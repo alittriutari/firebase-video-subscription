@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740536503318",
+    "project_id": "capacious-74ab4",
+    "storage_bucket": "capacious-74ab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740536503318:android:6710c1df58e97d1e63b937",
+        "android_client_info": {
+          "package_name": "com.example.capacious"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740536503318-rvte2d7pggptcb4blh3bdjs9ukf6q2e3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHgNkujqQmkMnSMni4T_-f0WNpPenTBkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740536503318-rvte2d7pggptcb4blh3bdjs9ukf6q2e3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

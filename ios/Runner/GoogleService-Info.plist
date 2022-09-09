@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>740536503318-f2ofr5guf61vpsqgf2r24ule3isr7c6e.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.740536503318-f2ofr5guf61vpsqgf2r24ule3isr7c6e</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBsKeueudqoxiVmv1g-hNl0M3ce2DNh0IA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>740536503318</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.capacious</string>
+	<key>PROJECT_ID</key>
+	<string>capacious-74ab4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>capacious-74ab4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:740536503318:ios:0db5c7fe1426c27363b937</string>
+</dict>
+</plist>
