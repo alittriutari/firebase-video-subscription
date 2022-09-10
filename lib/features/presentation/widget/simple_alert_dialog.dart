@@ -1,4 +1,4 @@
-import 'package:capacious/app_string.dart';
+import 'package:capacious/constants/app_string.dart';
 import 'package:flutter/material.dart';
 
 class SimpleAlertDialog extends StatelessWidget {

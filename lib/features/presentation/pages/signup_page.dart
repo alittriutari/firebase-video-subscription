@@ -1,4 +1,4 @@
-import 'package:capacious/app_string.dart';
+import 'package:capacious/constants/app_string.dart';
 import 'package:capacious/features/domain/entities/user.dart';
 import 'package:capacious/features/presentation/cubit/users_cubit.dart';
 import 'package:capacious/features/presentation/pages/signin_page.dart';

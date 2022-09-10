@@ -1,4 +1,4 @@
-import 'package:capacious/app_string.dart';
+import 'package:capacious/constants/app_string.dart';
 import 'package:capacious/features/presentation/pages/payment_form.dart';
 import 'package:capacious/features/presentation/widget/subscription_package.dart';
 import 'package:flutter/material.dart';
