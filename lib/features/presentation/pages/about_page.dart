@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/presentation/cubit/auth_cubit.dart';
 import 'package:capacious/features/presentation/cubit/users_cubit.dart';
 import 'package:capacious/features/presentation/pages/main_page.dart';
@@ -24,7 +25,7 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(AppString.profile),
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
@@ -55,9 +56,8 @@ class _AboutPageState extends State<AboutPage> {
                           padding: const EdgeInsets.all(16),
                           color: Colors.amberAccent,
                           child: state.users!.subsType == 0
-                              ? const Text("You don't have any subscription")
-                              : Text(
-                                  'Your subscription type is ${state.users!.subsType == 1 ? "Basic" : "Pro"}'),
+                              ? const Text(AppString.youDontHaveSubscription)
+                              : Text('Your subscription type is ${state.users!.subsType == 1 ? "Basic" : "Pro"}'),
                         )
                       ],
                     ),
@@ -71,18 +71,17 @@ class _AboutPageState extends State<AboutPage> {
                         context: context,
                         builder: (context) {
                           return SimpleAlertDialog(
-                            title: 'Logout',
-                            body: 'Are you sure want to logout?',
+                            title: AppString.logout,
+                            body: AppString.logoutConfirm,
                             onTap: () {
                               BlocProvider.of<AuthCubit>(context).logout();
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  MainPage.routeName, (route) => false);
+                              Navigator.of(context).pushNamedAndRemoveUntil(MainPage.routeName, (route) => false);
                             },
                           );
                         });
                   },
                   child: const Text(
-                    'Logout',
+                    AppString.logout,
                     style: TextStyle(color: Colors.white),
                   ))
             ],

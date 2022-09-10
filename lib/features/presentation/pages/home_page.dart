@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/presentation/cubit/video_cubit.dart';
 import 'package:capacious/features/presentation/pages/about_page.dart';
 import 'package:capacious/features/presentation/pages/subs_page.dart';
@@ -64,15 +65,12 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  BlocProvider.of<VideoCubit>(context)
-                      .checkSubscriptionStatus(widget.uid)
-                      .then((value) {
+                  BlocProvider.of<VideoCubit>(context).checkSubscriptionStatus(widget.uid).then((value) {
                     if (value) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                VideoPage(video: state.video[index]),
+                            builder: (context) => VideoPage(video: state.video[index]),
                           ));
                     } else {
                       Navigator.push(
@@ -93,21 +91,18 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             state.video[index].title!,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(state.video[index].author!,
-                              style: const TextStyle(fontSize: 15)),
+                          Text(state.video[index].author!, style: const TextStyle(fontSize: 15)),
                         ],
                       ),
                     ),
@@ -117,9 +112,7 @@ class _HomePageState extends State<HomePage> {
             },
           );
         } else if (state is VideoEmpty) {
-          return SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              child: const Center(child: Text('Video is empty')));
+          return SizedBox(height: MediaQuery.of(context).size.height / 3, child: const Center(child: Text(AppString.emptyVideo)));
         }
         return const Center(child: CircularProgressIndicator());
       },

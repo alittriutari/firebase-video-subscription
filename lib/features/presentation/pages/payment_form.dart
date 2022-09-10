@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/domain/entities/subscription.dart';
 import 'package:capacious/features/presentation/cubit/video_cubit.dart';
 import 'package:capacious/features/presentation/pages/home_page.dart';
@@ -12,11 +13,7 @@ class PaymentForm extends StatefulWidget {
   final String price;
   final int subsType;
 
-  const PaymentForm(
-      {super.key,
-      required this.uid,
-      required this.price,
-      required this.subsType});
+  const PaymentForm({super.key, required this.uid, required this.price, required this.subsType});
   @override
   State<StatefulWidget> createState() {
     return PaymentFormState();
@@ -50,7 +47,7 @@ class PaymentFormState extends State<PaymentForm> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Payment'),
+        title: const Text(AppString.payment),
       ),
       body: SafeArea(
         child: Column(
@@ -88,7 +85,7 @@ class PaymentFormState extends State<PaymentForm> {
                       expiryDate: expiryDate,
                       themeColor: Colors.blue,
                       cardNumberDecoration: InputDecoration(
-                        labelText: 'Number',
+                        labelText: AppString.number,
                         hintText: 'XXXX XXXX XXXX XXXX',
                         focusedBorder: border,
                         enabledBorder: border,
@@ -96,19 +93,19 @@ class PaymentFormState extends State<PaymentForm> {
                       expiryDateDecoration: InputDecoration(
                         focusedBorder: border,
                         enabledBorder: border,
-                        labelText: 'Expired Date',
+                        labelText: AppString.expiredDate,
                         hintText: 'XX/XX',
                       ),
                       cvvCodeDecoration: InputDecoration(
                         focusedBorder: border,
                         enabledBorder: border,
-                        labelText: 'CVV',
+                        labelText: AppString.cvv,
                         hintText: 'XXX',
                       ),
                       cardHolderDecoration: InputDecoration(
                         focusedBorder: border,
                         enabledBorder: border,
-                        labelText: 'Card Holder',
+                        labelText: AppString.cardHolder,
                       ),
                       onCreditCardModelChange: onCreditCardModelChange,
                     ),
@@ -120,26 +117,22 @@ class PaymentFormState extends State<PaymentForm> {
                     ),
                     ElevatedButton(
                       child: const Text(
-                        'Validate',
+                        AppString.validate,
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           // print('valid!');
                           BlocProvider.of<VideoCubit>(context)
-                              .selectSubs(Subcription(
-                                  uid: widget.uid,
-                                  price: widget.price,
-                                  subsType: widget.subsType))
+                              .selectSubs(Subcription(uid: widget.uid, price: widget.price, subsType: widget.subsType))
                               .whenComplete(() => Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          HomePage(
+                                      builder: (BuildContext context) => HomePage(
                                             uid: widget.uid,
                                           )),
                                   ModalRoute.withName('/')));
                         } else {
-                          showShortToast('Invalid');
+                          showShortToast(AppString.invalid);
                         }
                       },
                     ),

@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/domain/entities/user.dart';
 import 'package:capacious/features/presentation/cubit/auth_cubit.dart';
 import 'package:capacious/features/presentation/cubit/users_cubit.dart';
@@ -28,8 +29,7 @@ class _SignInPageState extends State<SignInPage> {
       body: BlocConsumer<UsersCubit, UsersState>(
         builder: (context, userState) {
           if (userState is UsersLoaded) {
-            return BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, authState) {
+            return BlocBuilder<AuthCubit, AuthState>(builder: (context, authState) {
               if (authState is Authenticated) {
                 return HomePage(
                   uid: authState.uid,
@@ -61,8 +61,8 @@ class _SignInPageState extends State<SignInPage> {
                 children: [
                   CustomTextfield(
                     controller: emailController,
-                    hintText: 'Email',
-                    title: 'Email',
+                    hintText: AppString.email,
+                    title: AppString.email,
                     inputType: TextInputType.emailAddress,
                     showTitle: true,
                   ),
@@ -72,8 +72,8 @@ class _SignInPageState extends State<SignInPage> {
                   CustomTextfield(
                     controller: passwordController,
                     inputType: TextInputType.visiblePassword,
-                    hintText: 'Password',
-                    title: 'Password',
+                    hintText: AppString.password,
+                    title: AppString.password,
                     obsecureText: true,
                     showTitle: true,
                   ),
@@ -85,26 +85,20 @@ class _SignInPageState extends State<SignInPage> {
                     height: MediaQuery.of(context).size.height * 0.06,
                     child: ElevatedButton(
                         onPressed: () async {
-                          if (locator<GlobalKey<FormState>>()
-                              .currentState!
-                              .validate()) {
+                          if (locator<GlobalKey<FormState>>().currentState!.validate()) {
                             try {
                               BlocProvider.of<UsersCubit>(context)
-                                  .signIn(Users(
-                                      email: emailController.text,
-                                      password: passwordController.text))
+                                  .signIn(Users(email: emailController.text, password: passwordController.text))
                                   .whenComplete(() {});
                             } catch (e) {
-                              final snackbar =
-                                  SnackBar(content: Text(e.toString()));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackbar);
+                              final snackbar = SnackBar(content: Text(e.toString()));
+                              ScaffoldMessenger.of(context).showSnackBar(snackbar);
                             }
                           }
 
                           FocusScope.of(context).unfocus();
                         },
-                        child: const Text('Sign in')),
+                        child: const Text(AppString.signIn)),
                   )
                 ],
               ))

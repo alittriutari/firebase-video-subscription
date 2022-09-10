@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/presentation/pages/signin_page.dart';
 import 'package:capacious/features/presentation/pages/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MainPage extends StatelessWidget {
                 aspectRatio: 1,
                 child: Center(
                   child: Text(
-                    "See what's happening in the world right now.",
+                    AppString.intro,
                     style: TextStyle(
                       fontSize: 45,
                       fontWeight: FontWeight.bold,
@@ -35,7 +36,7 @@ class MainPage extends StatelessWidget {
                       onPressed: () async {
                         Navigator.pushNamed(context, SignUpPage.routeName);
                       },
-                      child: const Text('Create account')),
+                      child: const Text(AppString.createAccount)),
                 ),
               ),
               const SizedBox(
@@ -44,12 +45,12 @@ class MainPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Already have an account?'),
+                  const Text(AppString.signIn),
                   TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, SignInPage.routeName);
                       },
-                      child: const Text('Sign In')),
+                      child: const Text(AppString.signIn)),
                 ],
               )
             ],

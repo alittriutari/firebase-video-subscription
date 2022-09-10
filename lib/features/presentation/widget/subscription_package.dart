@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:flutter/material.dart';
 
 class SubscriptionPackage extends StatelessWidget {
@@ -6,13 +7,7 @@ class SubscriptionPackage extends StatelessWidget {
   final String price;
   final Function() onSelect;
   final Color color;
-  const SubscriptionPackage(
-      {Key? key,
-      required this.name,
-      required this.desc,
-      required this.price,
-      required this.onSelect,
-      required this.color})
+  const SubscriptionPackage({Key? key, required this.name, required this.desc, required this.price, required this.onSelect, required this.color})
       : super(key: key);
 
   @override
@@ -50,7 +45,7 @@ class SubscriptionPackage extends StatelessWidget {
               onPressed: () {
                 onSelect();
               },
-              child: Text('choose package'.toUpperCase()))
+              child: Text(AppString.choosePackage.toUpperCase()))
         ],
       ),
     );

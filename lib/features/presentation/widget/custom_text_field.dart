@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
@@ -45,7 +46,7 @@ class CustomTextfield extends StatelessWidget {
           maxLines: maxLines,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'This field cannot be empty';
+              return AppString.fieldCannotEmpty;
             }
             return null;
           },

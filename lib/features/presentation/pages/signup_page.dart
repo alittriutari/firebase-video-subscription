@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:capacious/features/domain/entities/user.dart';
 import 'package:capacious/features/presentation/cubit/users_cubit.dart';
 import 'package:capacious/features/presentation/pages/signin_page.dart';
@@ -26,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
         title: const Text(
-          'Sign Up',
+          AppString.signUp,
         ),
         centerTitle: true,
         elevation: 1,
@@ -40,8 +41,8 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 CustomTextfield(
                   controller: nameController,
-                  hintText: 'Name',
-                  title: 'Name',
+                  hintText: AppString.name,
+                  title: AppString.name,
                   inputType: TextInputType.name,
                   showTitle: true,
                 ),
@@ -50,8 +51,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 CustomTextfield(
                   controller: emailController,
-                  hintText: 'Email',
-                  title: 'Email',
+                  hintText: AppString.email,
+                  title: AppString.email,
                   inputType: TextInputType.emailAddress,
                   showTitle: true,
                 ),
@@ -61,8 +62,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 CustomTextfield(
                   controller: passwordController,
                   inputType: TextInputType.visiblePassword,
-                  hintText: 'Password',
-                  title: 'Password',
+                  hintText: AppString.password,
+                  title: AppString.password,
                   obsecureText: true,
                   showTitle: true,
                 ),
@@ -74,29 +75,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: MediaQuery.of(context).size.height * 0.06,
                   child: ElevatedButton(
                       onPressed: () async {
-                        if (emailController.text.isNotEmpty &&
-                            passwordController.text.isNotEmpty &&
-                            nameController.text.isNotEmpty) {
+                        if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty && nameController.text.isNotEmpty) {
                           try {
                             BlocProvider.of<UsersCubit>(context)
-                                .signUp(Users(
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    name: nameController.text,
-                                    subsType: 0))
+                                .signUp(Users(email: emailController.text, password: passwordController.text, name: nameController.text, subsType: 0))
                                 .whenComplete(() {
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  SignInPage.routeName, (route) => false);
+                              Navigator.pushNamedAndRemoveUntil(context, SignInPage.routeName, (route) => false);
                             });
                           } catch (e) {
-                            final snackbar =
-                                SnackBar(content: Text(e.toString()));
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackbar);
+                            final snackbar = SnackBar(content: Text(e.toString()));
+                            ScaffoldMessenger.of(context).showSnackBar(snackbar);
                           }
                         }
                       },
-                      child: const Text('Sign up')),
+                      child: const Text(AppString.signUp)),
                 )
               ],
             )

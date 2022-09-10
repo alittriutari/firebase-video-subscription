@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class EmptyPage extends StatelessWidget {
         child: Container(
           color: Colors.white,
           child: const Center(
-            child: Text('page not found'),
+            child: Text(AppString.pageNotFound),
           ),
         ),
       ),

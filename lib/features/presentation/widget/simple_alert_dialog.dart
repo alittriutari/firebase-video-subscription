@@ -1,3 +1,4 @@
+import 'package:capacious/app_string.dart';
 import 'package:flutter/material.dart';
 
 class SimpleAlertDialog extends StatelessWidget {
@@ -18,13 +19,13 @@ class SimpleAlertDialog extends StatelessWidget {
       content: Text(body),
       actions: [
         TextButton(
-          child: const Text("No"),
+          child: const Text(AppString.no),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         TextButton(
-          child: const Text("Yes"),
+          child: const Text(AppString.yes),
           onPressed: () {
             onTap();
           },
