@@ -45,7 +45,7 @@ class MainPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(AppString.signIn),
+                  const Text(AppString.alreadyHaveAccount),
                   TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, SignInPage.routeName);

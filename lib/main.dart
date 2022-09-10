@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:capacious/features/presentation/cubit/auth_cubit.dart';
 import 'package:capacious/features/presentation/cubit/users_cubit.dart';
 import 'package:capacious/features/presentation/cubit/video_cubit.dart';
@@ -8,14 +10,24 @@ import 'package:capacious/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'injection.dart';
+
+void callbackDispatcher() {
+  Workmanager().executeTask((taskName, inputData) {
+    log('Native called background task');
+    return Future.value(true);
+  });
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await setupLocator();
+  // Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+  // Workmanager().registerOneOffTask("task-identifier", "simpleTask");
   runApp(const MyApp());
 }
 
@@ -47,8 +59,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: Routes().route,
         routes: {
           '/': (context) {
-            return BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, authState) {
+            return BlocBuilder<AuthCubit, AuthState>(builder: (context, authState) {
               if (authState is Authenticated) {
                 return HomePage(
                   uid: authState.uid,

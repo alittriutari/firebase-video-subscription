@@ -11,14 +11,14 @@ class VideoRepositoryImpl extends VideoRepository {
   Stream<List<Video>> getVideo() => dataSource.getVideo();
 
   @override
-  Future<void> deleteSubscription(Subcription subcription) async =>
-      dataSource.deleteSubscription(subcription);
+  Future<void> deleteSubscription(Subcription subcription) async => dataSource.deleteSubscription(subcription);
 
   @override
-  Future<void> selectSubscription(Subcription subcription) async =>
-      dataSource.selectSubscription(subcription);
+  Future<void> selectSubscription(Subcription subcription) async => dataSource.selectSubscription(subcription);
 
   @override
-  Future<bool> checkSubsStatus(String uid) async =>
-      dataSource.checkSubscription(uid);
+  Future<bool> checkSubsStatus(String uid) async => dataSource.checkSubscription(uid);
+
+  @override
+  Future<void> checkExpired(String uid) async => dataSource.checkExpired(uid);
 }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:capacious/features/domain/entities/subscription.dart';
 import 'package:capacious/features/domain/entities/video.dart';
+import 'package:capacious/features/domain/usecases/check_expired.dart';
 import 'package:capacious/features/domain/usecases/check_subs_status.dart';
 import 'package:capacious/features/domain/usecases/delete_subscription.dart';
 import 'package:capacious/features/domain/usecases/get_video.dart';
@@ -15,12 +16,14 @@ class VideoCubit extends Cubit<VideoState> {
   final SelectSubscription selectSubscription;
   final DeleteSubscription deleteSubscription;
   final CheckSubsStatus checkSubsStatus;
+  final CheckExpired checkExpired;
 
   VideoCubit(
       {required this.getVideo,
       required this.selectSubscription,
       required this.deleteSubscription,
-      required this.checkSubsStatus})
+      required this.checkSubsStatus,
+      required this.checkExpired})
       : super(VideoInitial());
 
   Future<void> fetchVideo() async {
@@ -62,6 +65,14 @@ class VideoCubit extends Cubit<VideoState> {
       return isSubscribed;
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<void> checkSubscriptionExpired(String uid) async {
+    try {
+      await checkExpired(uid);
+    } catch (e) {
+      showShortToast(e.toString());
     }
   }
 }

@@ -6,4 +6,5 @@ abstract class VideoRepository {
   Future<void> selectSubscription(Subcription subcription);
   Future<void> deleteSubscription(Subcription subcription);
   Future<bool> checkSubsStatus(String uid);
+  Future<void> checkExpired(String uid);
 }

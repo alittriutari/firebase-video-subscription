@@ -7,6 +7,7 @@ import 'package:capacious/features/data/repositories/video_repository_impl.dart'
 import 'package:capacious/features/domain/repositories/auth_repository.dart';
 import 'package:capacious/features/domain/repositories/user_repository.dart';
 import 'package:capacious/features/domain/repositories/video_repository.dart';
+import 'package:capacious/features/domain/usecases/check_expired.dart';
 import 'package:capacious/features/domain/usecases/check_subs_status.dart';
 import 'package:capacious/features/domain/usecases/delete_subscription.dart';
 import 'package:capacious/features/domain/usecases/do_logout.dart';
@@ -29,53 +30,33 @@ final locator = GetIt.instance;
 
 Future<void> setupLocator() async {
   //cubit
-  locator.registerFactory<UsersCubit>(() => UsersCubit(
-      doSignUp: locator(), doSignIn: locator(), getUserDetail: locator()));
-  locator.registerFactory<AuthCubit>(() => AuthCubit(
-      isSignIn: locator(), getCurrentUid: locator(), doLogout: locator()));
+  locator.registerFactory<UsersCubit>(() => UsersCubit(doSignUp: locator(), doSignIn: locator(), getUserDetail: locator()));
+  locator.registerFactory<AuthCubit>(() => AuthCubit(isSignIn: locator(), getCurrentUid: locator(), doLogout: locator()));
   locator.registerFactory<VideoCubit>(() => VideoCubit(
-      getVideo: locator(),
-      deleteSubscription: locator(),
-      selectSubscription: locator(),
-      checkSubsStatus: locator()));
+      getVideo: locator(), deleteSubscription: locator(), selectSubscription: locator(), checkSubsStatus: locator(), checkExpired: locator()));
 
   //usecases
-  locator
-      .registerLazySingleton<DoSignUp>(() => DoSignUp(repository: locator()));
-  locator
-      .registerLazySingleton<DoSignIn>(() => DoSignIn(repository: locator()));
-  locator
-      .registerLazySingleton<IsSignIn>(() => IsSignIn(repository: locator()));
-  locator.registerLazySingleton<GetCurrentUid>(
-      () => GetCurrentUid(repository: locator()));
-  locator
-      .registerLazySingleton<GetVideo>(() => GetVideo(repository: locator()));
-  locator
-      .registerLazySingleton<DoLogout>(() => DoLogout(repository: locator()));
-  locator.registerLazySingleton<GetUserDetail>(
-      () => GetUserDetail(repository: locator()));
-  locator.registerLazySingleton<SelectSubscription>(
-      () => SelectSubscription(repository: locator()));
-  locator.registerLazySingleton<DeleteSubscription>(
-      () => DeleteSubscription(repository: locator()));
-  locator.registerLazySingleton<CheckSubsStatus>(
-      () => CheckSubsStatus(repository: locator()));
+  locator.registerLazySingleton<DoSignUp>(() => DoSignUp(repository: locator()));
+  locator.registerLazySingleton<DoSignIn>(() => DoSignIn(repository: locator()));
+  locator.registerLazySingleton<IsSignIn>(() => IsSignIn(repository: locator()));
+  locator.registerLazySingleton<GetCurrentUid>(() => GetCurrentUid(repository: locator()));
+  locator.registerLazySingleton<GetVideo>(() => GetVideo(repository: locator()));
+  locator.registerLazySingleton<DoLogout>(() => DoLogout(repository: locator()));
+  locator.registerLazySingleton<GetUserDetail>(() => GetUserDetail(repository: locator()));
+  locator.registerLazySingleton<SelectSubscription>(() => SelectSubscription(repository: locator()));
+  locator.registerLazySingleton<DeleteSubscription>(() => DeleteSubscription(repository: locator()));
+  locator.registerLazySingleton<CheckSubsStatus>(() => CheckSubsStatus(repository: locator()));
+  locator.registerLazySingleton<CheckExpired>(() => CheckExpired(repository: locator()));
 
   //repository
-  locator.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(dataSource: locator()));
-  locator.registerLazySingleton<VideoRepository>(
-      () => VideoRepositoryImpl(dataSource: locator()));
-  locator.registerLazySingleton<UserRepository>(
-      () => UserRepositoryImpl(dataSource: locator()));
+  locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(dataSource: locator()));
+  locator.registerLazySingleton<VideoRepository>(() => VideoRepositoryImpl(dataSource: locator()));
+  locator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(dataSource: locator()));
 
   //data source
-  locator.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(firebaseAuth: locator()));
-  locator.registerLazySingleton<VideoRemoteDataSource>(
-      () => VideoRemoteDataSourceImpl(firestore: locator()));
-  locator.registerLazySingleton<UserRemoteDataSource>(
-      () => UserRemoteDataSourceImpl(firestore: locator()));
+  locator.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(firebaseAuth: locator()));
+  locator.registerLazySingleton<VideoRemoteDataSource>(() => VideoRemoteDataSourceImpl(firestore: locator()));
+  locator.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(firestore: locator()));
 
   //external
   final auth = FirebaseAuth.instance;
@@ -83,8 +64,6 @@ Future<void> setupLocator() async {
 
   locator.registerLazySingleton(() => auth);
   locator.registerLazySingleton(() => fireStore);
-  locator.registerLazySingleton<GlobalKey<ScaffoldState>>(
-      () => GlobalKey<ScaffoldState>());
-  locator.registerLazySingleton<GlobalKey<FormState>>(
-      () => GlobalKey<FormState>());
+  locator.registerLazySingleton<GlobalKey<ScaffoldState>>(() => GlobalKey<ScaffoldState>());
+  locator.registerLazySingleton<GlobalKey<FormState>>(() => GlobalKey<FormState>());
 }

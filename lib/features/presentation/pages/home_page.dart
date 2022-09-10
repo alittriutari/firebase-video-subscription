@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     BlocProvider.of<VideoCubit>(context).fetchVideo();
+    BlocProvider.of<VideoCubit>(context).checkSubscriptionExpired(widget.uid);
     super.initState();
   }
 

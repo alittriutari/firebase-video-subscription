@@ -121,9 +121,8 @@ class PaymentFormState extends State<PaymentForm> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          // print('valid!');
                           BlocProvider.of<VideoCubit>(context)
-                              .selectSubs(Subcription(uid: widget.uid, price: widget.price, subsType: widget.subsType))
+                              .selectSubs(Subcription(uid: widget.uid, price: widget.price, subsType: widget.subsType, createdAt: DateTime.now()))
                               .whenComplete(() => Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
